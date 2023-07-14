@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins:wght@100;200;400&family=Roboto&family=Work+Sans&family=Play&family=Nunito&display=swap');
+
+*{
+    font-family: Poppins;
+    margin: 0;
+    padding: 0;
+  
+}
+.logo h1{
+    color: whitesmoke;
+}
+.navbar{
+    display: flex;
+    flex-direction: row;
+    grid-area: header;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #302f57;
+    padding: 2rem 2.5rem 2.5rem 2.5rem;
+}
+nav a{
+    padding: 0 .5rem 0 0.5rem;
+    font-size: 1.1rem;
+    color: whitesmoke;
+}
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    color: whitesmoke;
+    grid-area: footer;
+    padding: 1.5rem;
+    background-color: #302f57;
+
+}
+body{
+  background-color: #27274d;
+  width: 100%;
+  height: auto; 
+
+}
+.pages{
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.home{
+  display: flex;
+  justify-content: space-around; 
+}
+.main{
+  border-radius: 15px;
+  width: 100%;
+  max-height: 400px;
+  padding: 1.5rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  background-color: #302f57;
+}
+ul{
+  height: auto;
+  list-style: none;
+  text-align: left;
+}
+.deleteLogo{
+  color: aqua;
+}
+ul li{
+  border: 2px solid grey;
+  padding: 1rem;
+  /* width: 100%; */
+  border-radius: 15px;
+  color: aliceblue;
+  margin: 0 0 1rem 0;
+}
+.form{
+  /* border: 2px solid white; */
+  text-align: left;
+  padding: 2rem 4rem 2rem 2rem;
+  margin-left: 20px;
+  border-radius: 15px;
+  width: 50%;
+  height: auto;
+  background-color: #302f57;
+}
+form input{
+  width: 100%;
+  color: white;
+  background-color: #47466e;
+  border: none;
+  margin-bottom: .5rem;
+  margin-top: .5rem;
+  outline: none;
+  padding: 1rem;
+}
+label{
+  color: white;
+  margin-bottom: .5rem;
+}
