@@ -15,6 +15,10 @@ export const TodoReducer = (state, action) => {
             return{
                 todos: state.todos.filter((t)=> t._id !== action.payload._id)
             }
+        case 'UPDATE_TODO':
+            return{
+                todos: [action.payload, ...state.todos]
+            }
         default:
             return state
     }

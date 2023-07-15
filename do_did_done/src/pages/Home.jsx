@@ -11,7 +11,7 @@ export default function Home() {
   
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
-
+  const [editTodoId, setEditTodoId] = useState('');
   // const  [quote, setQuote] = useState(null);
   const [error, setError] =useState(null);
   useEffect(()=>{
@@ -87,15 +87,78 @@ export default function Home() {
       alert(deleteJson.error);
     }
   }
+  const handleDone = async (todoId) => {
+    
+    const deleteResponse = await fetch(`http://localhost:4000/todos/delete/${todoId}`, {
+      method: 'DELETE',
+    
+    });
+    const deleteJson = await deleteResponse.json();
+
+    if(deleteResponse.ok){
+      dispatch({type: 'DELETE_TODO', payload: deleteJson});
+      alert("Congrats! You have done it.");
+    }else{
+      alert(deleteJson.error);
+    }
+  }
+  const handlePatch = async(todoId) =>{
+    
+    setEditTodoId(todoId);
+
+    const data = {
+      title: title,
+      desc: desc
+    }
+    console.log(data)
+    console.log(title)
+    console.log(desc)
+    console.log(editTodoId)
+    const updateResponse = await fetch(`http://localhost:4000/todos/update/${editTodoId.toString()}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json' // Set the Content-Type header
+      },
+      body: JSON.stringify(data)    
+    });
+    const updateJson = await updateResponse.json();
+
+    if(updateResponse.ok){
+      dispatch({type: 'UPDATE_TODO', payload: updateJson});
+      alert("Your new job is updated");
+    }else{
+      alert(updateJson.error);
+    }
+  }
+  const handleUpdate = async (todoId) => {
+    
+    setEditTodoId(todoId);
+    const todoToUpdate = todos.find(todo => todo._id === todoId);
+    
+    if (todoToUpdate) {
+      setTitle(todoToUpdate.title);
+      setDesc(todoToUpdate.desc);
+    }
+  }
+
 return (
     <div className="home">
       <div className="main">
         <ul>
           {todos && todos.map(data => (
             <li key={data._id}>
-              <strong>To Do: {data.title} <span className='deleteLogo'><MdDeleteOutline  onClick={() => handleClick(data._id)} /></span></strong>
-              <p>{data.desc}</p>
-              <p>{data.createdAt}</p>
+              <div className="todoData">
+              <div className="todo">
+                <strong>To Do: {data.title}</strong>
+                <p>{data.desc}</p>
+                <p>{data.createdAt}</p>
+              </div>
+              <div className="buttons">
+                <button onClick={() => handleDone(data._id)} className='done'>Did It <MdOutlineDoneOutline/></button>
+                <button onClick={() => handleUpdate(data._id)} className='edit'>Edit <LuEdit/></button>
+                <button className='delete' onClick={() => handleClick(data._id)}>Delete <MdDeleteOutline/></button>
+              </div>
+              </div>
             </li>
           ))}
         </ul>
@@ -103,18 +166,34 @@ return (
 
 
       <div className="form">
-          
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="title">What to Do:</label><br />
-            <input type="text" name="title" onChange={(e)=> setTitle(e.target.value)} required/> <br />
-            
-            <label htmlFor="desc">About:</label><br />
-            <input type="text" name="desc" onChange={(e)=> setDesc(e.target.value)} required/> <br />
-            <button>Let's Do It</button>
-          </form>
-          {/* <h3>Random Quotes</h3>
-          <p>Random Quote Here</p> */}
-      </div>
+      <form onSubmit={editTodoId ? handlePatch : handleSubmit}>
+        <label htmlFor="title">What to Do:</label>
+        <br />
+        <input
+          type="text"
+          name="title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+        />
+        <br />
+
+        <label htmlFor="desc">About:</label>
+        <br />
+        <input
+          type="text"
+          name="desc"
+          value={desc}
+          onChange={(e) => setDesc(e.target.value)}
+          required
+        />
+        <br />
+
+        <button className="doIt">
+          {editTodoId ? 'Update' : "Let's Do It"}
+        </button>
+      </form>
+    </div>
     </div>
   )
 }
