@@ -8,12 +8,10 @@ export default function Home() {
 
   const {todos, dispatch} = useTodoContext()
   // const [todos, setTodos] = useState(null);
-  
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [editTodoId, setEditTodoId] = useState('');
   // const  [quote, setQuote] = useState(null);
-  const [error, setError] =useState(null);
   useEffect(()=>{
     const fetchData = async ()=>{
   
@@ -62,12 +60,11 @@ export default function Home() {
       const json = await response.json();
       
       if (!response.ok) {
-        setError(json.error);
         alert(json.error);
       } else {
-        setError(null);
         alert('New todo Added');
-        e.target.reset(); // Reset the form fields
+        setTitle('')
+        setDesc('');
         dispatch({type:'CREATE_TODO', payload:json});
       }
   };
@@ -76,7 +73,6 @@ export default function Home() {
     
     const deleteResponse = await fetch(`http://localhost:4000/todos/delete/${todoId}`, {
       method: 'DELETE',
-    
     });
     const deleteJson = await deleteResponse.json();
 
@@ -102,18 +98,21 @@ export default function Home() {
       alert(deleteJson.error);
     }
   }
+  
   const handlePatch = async(todoId) =>{
-    
+
     setEditTodoId(todoId);
 
     const data = {
       title: title,
       desc: desc
     }
+
     console.log(data)
     console.log(title)
     console.log(desc)
     console.log(editTodoId)
+    
     const updateResponse = await fetch(`http://localhost:4000/todos/update/${editTodoId.toString()}`, {
       method: 'PATCH',
       headers: {
@@ -121,15 +120,19 @@ export default function Home() {
       },
       body: JSON.stringify(data)    
     });
+    
     const updateJson = await updateResponse.json();
 
     if(updateResponse.ok){
       dispatch({type: 'UPDATE_TODO', payload: updateJson});
       alert("Your new job is updated");
+      setTitle('')
+      setDesc('');
     }else{
       alert(updateJson.error);
     }
   }
+
   const handleUpdate = async (todoId) => {
     
     setEditTodoId(todoId);

@@ -30,10 +30,8 @@ footer{
     text-align: center;
     width: 100%;
     color: whitesmoke;
-    grid-area: footer;
     padding: 1.5rem;
     background-color: #302f57;
-
 }
 body{
   background-color: #27274d;
@@ -171,9 +169,48 @@ label{
   color: white;
   margin-bottom: .5rem;
 }
+::-webkit-scrollbar-corner{
+  border-radius: 15px;
+}
+::-webkit-scrollbar-track{
+  background-color: #302f57;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 
-@media screen and (max-width: 480px) {
+}
+@media screen and (max-width: 768px) {
   .home{
     flex-direction: column-reverse;
+    width: 100%;
+    padding-left: 1rem;
+    margin-bottom: 4rem;
+  }
+  .main{
+  }
+  .form{
+    width:fit-content;
+    margin-left: 0;
+    width: 87%;
+    margin-bottom: 2rem;
+  }
+  nav a{
+    font-size: 1rem;
+  }
+  .logo h1{
+    font-size: 2rem;
+  }
+  .todoData{
+    flex-direction: column;
+  }
+  footer{
+    padding: 0.5rem;
+    position: fixed;
+  }
+  .navbar{
+    width: 100%;
+  }
+  .buttons{
+    margin-top: 1rem;
+    margin-left: 1.5rem;
   }
 }

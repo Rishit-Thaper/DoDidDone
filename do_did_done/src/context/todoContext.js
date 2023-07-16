@@ -15,10 +15,15 @@ export const TodoReducer = (state, action) => {
             return{
                 todos: state.todos.filter((t)=> t._id !== action.payload._id)
             }
-        case 'UPDATE_TODO':
-            return{
-                todos: [action.payload, ...state.todos]
-            }
+            case 'UPDATE_TODO':
+                const updatedTodo = action.payload;
+                const updatedTodos = state.todos.map((todo) =>
+                  todo._id === updatedTodo._id ? updatedTodo : todo
+                );
+                return {
+                  ...state,
+                  todos: updatedTodos
+                };
         default:
             return state
     }
