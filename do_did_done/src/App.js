@@ -6,6 +6,8 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import About from './pages/About';
 import Profile from './pages/Profile';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 
 
 //pages & components
@@ -18,6 +20,8 @@ function App() {
             <div className='pages'>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/signup" element={<SignUp/>}/>
                     <Route path="/about" element={<About/>}/>
                     <Route path="/profile" element={<Profile/>}/>
                 </Routes>

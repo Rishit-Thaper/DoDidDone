@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { TodoContextProvider } from './context/todoContext';
+import { AuthContextProvider } from './context/authContext';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <TodoContextProvider>
-      <App />
-    </TodoContextProvider>
+    <AuthContextProvider>
+      <TodoContextProvider>
+        <App />
+      </TodoContextProvider>
+    </AuthContextProvider>
   </React.StrictMode>
 );
 
