@@ -5,6 +5,7 @@ const app = express();
 const session = require('express-session');
 const cors = require('cors');
 const todoRoute = require('./routes/todo')
+const userRoute = require('./routes/user')
 app.use(express.json());
 
 app.use(cors());
@@ -27,4 +28,4 @@ mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser: true, useUnifiedTopol
 
 
     app.use('/todos', todoRoute);
-
+    app.use('/user', userRoute);
