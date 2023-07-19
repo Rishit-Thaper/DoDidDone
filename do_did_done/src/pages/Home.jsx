@@ -7,6 +7,7 @@ import {LuEdit} from 'react-icons/lu';
 export default function Home() {
 
   const {todos, dispatch} = useTodoContext()
+  
   // const [todos, setTodos] = useState(null);
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');

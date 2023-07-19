@@ -3,6 +3,8 @@ const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 const bcrypt = require('bcrypt')
+
+
 const createToken = (_id)=>{
     return jwt.sign({_id}, process.env.SECRET,{expiresIn: '3d'})
 }

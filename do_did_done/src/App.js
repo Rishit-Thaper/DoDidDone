@@ -15,7 +15,6 @@ function App() {
   return (
     <div className='App'>
         <BrowserRouter>
-        <div className='grid'>
             <div className='header'><Navbar/></div>
             <div className='pages'>
                 <Routes>
@@ -27,7 +26,6 @@ function App() {
                 </Routes>
             </div>
         <div className='footer'><Footer/></div>
-        </div>
         </BrowserRouter>
     </div>
 

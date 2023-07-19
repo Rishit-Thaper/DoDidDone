@@ -5,18 +5,15 @@ export const AuthContext = createContext()
 export const authReducer = (state, action)=>{
     switch (action.type){
         case 'LOGIN':
-            return{
-                user: action.payload
-            }
+            return{ user: action.payload }
             case 'LOGOUT':
-                return{
-                    user: null
-                }
+                return{ user: null }
             default:
                 return state
     }
 }
-export const AuthContextProvider = ({child})=>{
+export const AuthContextProvider = ({children})=>{
+   
     const [state, dispatch] = useReducer(authReducer,{
         user:null
     })
@@ -26,7 +23,7 @@ export const AuthContextProvider = ({child})=>{
 
     return(
         <AuthContext.Provider value={{...state, dispatch}}>
-            {child}
+            {children}
         </AuthContext.Provider>
     )
 }

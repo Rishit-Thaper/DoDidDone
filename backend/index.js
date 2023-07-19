@@ -9,11 +9,11 @@ const userRoute = require('./routes/user')
 app.use(express.json());
 
 app.use(cors());
-app.use(session({
-    secret:'user in session',
-    saveUninitialized: true,
-    resave: false,
-}))
+// app.use(session({
+//     secret:'user in session',
+//     saveUninitialized: true,
+//     resave: false,
+// }))
 
 mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser: true, useUnifiedTopology: true})
     .then(()=>{
