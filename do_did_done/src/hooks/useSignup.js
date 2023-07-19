@@ -5,12 +5,16 @@ import {useAuthContext} from './useAuthContext'
 export const useSignup = ()=>{
     const [err, setErr] = useState(null);
     const [load, setLoad] = useState(null);
+    const {dispatch} = useAuthContext()
+    
     
     const signup = async(name, email, password)=>{
+        
         setLoad(true);
         setErr(null);
 
         const response = await fetch('http://localhost:4000/user/signup',{
+            
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
@@ -26,8 +30,12 @@ export const useSignup = ()=>{
         if(response.ok){
             //save the user to localstorage
             localStorage.setItem('user', JSON.stringify(json))
+            dispatch({type:'LOGIN', payload:json})
 
+            setLoad(false)
         }
 
     }
+
+    return{signup, load, err};
 }
