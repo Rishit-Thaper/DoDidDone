@@ -3,7 +3,10 @@ const mongoose = require('mongoose');
 
 //GET all Todos
 const getTodo = async(req,res)=>{
-    const todos = await Todo.find({}).sort({createdAt: -1})
+    
+    const user_id = req.user._id;
+
+    const todos = await Todo.find({ user_id }).sort({createdAt: -1})
     res.status(200).json(todos);
 }
 
@@ -29,8 +32,11 @@ const createTodo = async(req, res)=>{
     console.log(title);
     console.log(desc);
     try{
-        const todo = await Todo.create({title, desc});
+
+        const user_id = req.user._id;    
+        const todo = await Todo.create({title, desc, user_id});
         res.status(200).json(todo);
+    
     }catch(error){
         res.status(400).json(error);
     }
