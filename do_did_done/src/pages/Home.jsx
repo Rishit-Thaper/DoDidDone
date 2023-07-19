@@ -4,56 +4,66 @@ import '../assets/home.css'
 import {MdOutlineDoneOutline} from 'react-icons/md';
 import {MdDeleteOutline} from 'react-icons/md';
 import {LuEdit} from 'react-icons/lu';
+import { useAuthContext } from '../hooks/useAuthContext';
+
+
 export default function Home() {
 
   const {todos, dispatch} = useTodoContext()
-  
-  // const [todos, setTodos] = useState(null);
+  const {user} = useAuthContext()
+  const [error, setError] = useState(null);
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [editTodoId, setEditTodoId] = useState('');
-  // const  [quote, setQuote] = useState(null);
+ 
+
+
   useEffect(()=>{
     const fetchData = async ()=>{
-  
-      
+      try{
       const response = await fetch('http://localhost:4000/todos',{
         method: 'GET',
         mode: "cors",
+        headers:{
+          'Authorization': `Bearer ${user.token}`
+        }
       });
-      // const quoteResponse = await fetch("https://type.fit/api/quotes")
+
       const json = await response.json();
-      // const quotesJson = quoteResponse.json();
 
 
       if(response.ok){
-        // setTodos(json);
         dispatch({type:'SET_TODO', payload:json})
         console.log(todos);
       }
-      // if(quoteResponse.ok){
-      //   setQuote(quotesJson)
-      //   console.log(quote);
-      // }
+    }catch(error){
+      console.log(error)
     }
-    fetchData();
-  }, [])
+    }
+    if(user){
+      fetchData();
+    }
+  }, [dispatch, user])
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+    
+    if(!user){
+      setError('You must be logged in');
+    }
     const data = {
       title: title,
       desc: desc,
     };
-    // console.log(data);
-    // console.log(title);
-    // console.log(desc);
 
+    try{
       const response = await fetch('http://localhost:4000/todos', {
         method: 'POST',
         headers:{
-          'Content-Type':'application/json'
+          'Content-Type':'application/json',
+          'Authorization': `Bearer ${user.token}`
         },
         body: JSON.stringify(data),
       });
@@ -68,12 +78,26 @@ export default function Home() {
         setDesc('');
         dispatch({type:'CREATE_TODO', payload:json});
       }
+    }catch(error){
+      console.log(error)
+    }
   };
   
+
+
+
   const handleClick = async (todoId) => {
     
+    if(!user){
+      setError('You must be logged in')
+    }
+    try{
     const deleteResponse = await fetch(`http://localhost:4000/todos/delete/${todoId}`, {
+      
       method: 'DELETE',
+      headers:{
+        'Authorization': `Bearer ${user.token}`
+      },
     });
     const deleteJson = await deleteResponse.json();
 
@@ -83,12 +107,24 @@ export default function Home() {
     }else{
       alert(deleteJson.error);
     }
+  }catch(error){
+    console.log(error);
   }
+  }
+  
+
+
   const handleDone = async (todoId) => {
     
+    if(!user){
+      setError('You must be logged in')
+    }
+    try{
     const deleteResponse = await fetch(`http://localhost:4000/todos/delete/${todoId}`, {
       method: 'DELETE',
-    
+      headers:{
+        'Authorization': `Bearer ${user.token}`
+      },
     });
     const deleteJson = await deleteResponse.json();
 
@@ -98,10 +134,18 @@ export default function Home() {
     }else{
       alert(deleteJson.error);
     }
+  }catch(error){
+    console.log(error)
+  }
   }
   
+
+
   const handlePatch = async(todoId) =>{
 
+    if(!user){
+      setError('You must be logged in')
+    }
     setEditTodoId(todoId);
 
     const data = {
@@ -113,11 +157,13 @@ export default function Home() {
     console.log(title)
     console.log(desc)
     console.log(editTodoId)
-    
+    try{
     const updateResponse = await fetch(`http://localhost:4000/todos/update/${editTodoId.toString()}`, {
       method: 'PATCH',
       headers: {
-        'Content-Type': 'application/json' // Set the Content-Type header
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.token}`
+         // Set the Content-Type header
       },
       body: JSON.stringify(data)    
     });
@@ -132,17 +178,30 @@ export default function Home() {
     }else{
       alert(updateJson.error);
     }
+  }catch(error){
+    console.log(error)
   }
+  }
+
+
 
   const handleUpdate = async (todoId) => {
     
-    setEditTodoId(todoId);
-    const todoToUpdate = todos.find(todo => todo._id === todoId);
-    
-    if (todoToUpdate) {
-      setTitle(todoToUpdate.title);
-      setDesc(todoToUpdate.desc);
+    if(!user){
+      setError('You must be logged in');
     }
+    setEditTodoId(todoId);
+    try{
+      const todoToUpdate = todos.find(todo => todo._id === todoId);
+    
+      if (todoToUpdate) {
+        setTitle(todoToUpdate.title);
+        setDesc(todoToUpdate.desc);
+      }
+    }catch(error){
+      console.log(error);
+    }
+
   }
 
 return (
@@ -196,6 +255,7 @@ return (
         <button className="doIt">
           {editTodoId ? 'Update' : "Let's Do It"}
         </button>
+        {error && <p>{error}</p>}
       </form>
     </div>
     </div>

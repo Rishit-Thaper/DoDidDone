@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 const Todo = require('../models/todoModel')
-
+const requireAuth = require('../middleware/requireAuth')
 const {
     createTodo,
     getTodo,
@@ -15,6 +15,8 @@ router.use((req, res, next)=>{
     console.log(req.path, req.method);
     next();
 })
+
+router.use(requireAuth);
 
 //GET all todos
 router.get('/', getTodo)
