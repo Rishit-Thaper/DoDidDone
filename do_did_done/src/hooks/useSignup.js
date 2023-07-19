@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import {useAuthContext} from './useAuthContext'
 
+
 export const useSignup = ()=>{
     const [err, setErr] = useState(null);
     const [load, setLoad] = useState(null);
-
+    
     const signup = async(name, email, password)=>{
         setLoad(true);
         setErr(null);
@@ -25,7 +26,7 @@ export const useSignup = ()=>{
         if(response.ok){
             //save the user to localstorage
             localStorage.setItem('user', JSON.stringify(json))
-            
+
         }
 
     }
