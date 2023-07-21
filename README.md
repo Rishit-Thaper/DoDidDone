@@ -6,7 +6,6 @@ DoDidDone is a simple yet powerful TODO application built using the MERN (MongoD
 ## Table of Contents
 
 - [Features](#features)
-- [Demo](#demo)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Technologies](#technologies)
@@ -50,7 +49,7 @@ Make sure you have MongoDB installed and running on your local machine.
 
 ## Technologies
 
-- **Frontend**: React.js, Redux, HTML, CSS, Bootstrap (or any other UI library)
+- **Frontend**: React.js, HTML, CSS
 - **Backend**: Node.js, Express.js, MongoDB, JWT
 
 ## Contributing
