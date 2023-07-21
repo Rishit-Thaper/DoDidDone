@@ -16,11 +16,8 @@ DoDidDone is a simple yet powerful TODO application built using the MERN (MongoD
 
 - **User Authentication**: Secure user registration and login using JSON Web Tokens (JWT).
 - **Create and Manage Tasks**: Users can easily create, update, and delete tasks.
-- **Task Categories**: Organize tasks with customizable categories/tags.
 - **Status Updates**: Mark tasks as "Todo," "Doing," or "Done" for effective task management.
-- **Due Dates**: Set due dates for tasks to prioritize and plan effectively.
 - **User-friendly Interface**: A clean and intuitive user interface for a smooth user experience.
-- **Search and Filter**: Find specific tasks quickly with search and filter options.
 - **Responsive Design**: Access and manage tasks on various devices with a responsive layout.
 
 ## Installation
