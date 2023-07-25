@@ -5,6 +5,7 @@ import {MdOutlineDoneOutline} from 'react-icons/md';
 import {MdDeleteOutline} from 'react-icons/md';
 import {LuEdit} from 'react-icons/lu';
 import { useAuthContext } from '../hooks/useAuthContext';
+import formatDistanceToNow  from "date-fns/formatDistanceToNow"
 
 
 export default function Home() {
@@ -213,8 +214,8 @@ return (
               <div className="todoData">
               <div className="todo">
                 <strong>To Do: {data.title}</strong>
-                <p>{data.desc}</p>
-                <p>{data.createdAt}</p>
+                <p className='desc'>{data.desc}</p>
+                <p className='time'>{formatDistanceToNow (new Date(data.createdAt), {addSuffix: true})}</p>
               </div>
               <div className="buttons">
                 <button onClick={() => handleDone(data._id)} className='done'>Did It <MdOutlineDoneOutline/></button>

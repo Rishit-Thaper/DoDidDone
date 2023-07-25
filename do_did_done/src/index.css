@@ -239,7 +239,10 @@ label{
   border-bottom-right-radius: 15px;
 
 }
-
+.time{
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+}
 .hidden{
   display: none;
 }
@@ -247,11 +250,15 @@ label{
   padding: 0.5rem;
   background-color: #47466e;
   border-radius: 15px;
+  transition: ease-in-out 0.3s;
 }
 .logout{
   margin-left: 0.5rem;
 }
-
+.username:hover,.logout:hover{
+  background-color: #ffffff;
+  color: #47466e;
+}
 .account{
   display: flex;
   justify-content: center;
@@ -310,6 +317,7 @@ label{
   .account h1{
     display: none;
   }
+
   .logo h1{
     font-size: 1.5rem;
   }
