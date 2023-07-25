@@ -15,7 +15,7 @@ app.use(cors());
 //     resave: false,
 // }))
 
-mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.MONGODB_URI)
     .then(()=>{
         app.listen(process.env.PORT, ()=>{
             console.log(`Server Started at ${process.env.PORT}`);

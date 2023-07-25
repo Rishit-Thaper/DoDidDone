@@ -10,6 +10,7 @@ const getTodo = async(req,res)=>{
     res.status(200).json(todos);
 }
 
+
 //GET a single TODO
 const getOneTodo = async(req,res)=>{
 
@@ -25,6 +26,8 @@ const getOneTodo = async(req,res)=>{
     }
     res.status(200).json(oneTodo);
 }
+
+
 
 //create a new TODO
 const createTodo = async(req, res)=>{
@@ -84,3 +87,4 @@ module.exports = {
     deleteTodo,
     updateTodo,
 } 
+

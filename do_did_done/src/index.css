@@ -21,6 +21,7 @@
 nav a{
     padding: 0 .5rem 0 0.5rem;
     font-size: 1.1rem;
+    text-decoration: none;
     color: whitesmoke;
 }
 footer{
@@ -63,27 +64,33 @@ body{
   width: 15px;
 
 }
+
 ::-webkit-scrollbar-thumb{
   background-color: #47466e;
   border-radius: 15px;
 }
+
 ::-webkit-scrollbar-track{
   background-color: #27274d;
 } 
+
 ul{
   height: auto;
   list-style: none;
   text-align: left;
 }
+
 .deleteLogo{
   color: aqua;
   font-size: 1rem;
   cursor: pointer;
 }
+
 .todoData{
   display: flex;
   justify-content: space-between;
 }
+
 .buttons button{
   outline: none;
   background-color: #47466e;
@@ -93,6 +100,7 @@ ul{
   color: whitesmoke;
   border-radius: 10px;
 }
+
 .buttons .done{
   color: rgb(10, 216, 10);
   cursor: pointer;
@@ -102,15 +110,18 @@ ul{
   color: white;
   background-color: rgb(10, 216, 10);
 }
+
 .buttons .edit{
   cursor: pointer;
   color: aliceblue;
   transition: ease-in-out 0.3s;
 }
+
 .buttons .edit:hover{
   color: #27274d;
   background-color: white;
 }
+
 .doIt{
   outline: none;
   border: none;
@@ -123,19 +134,23 @@ ul{
   font-size: 1.04rem;
   transition: ease-in-out 0.3s;
 }
+
 .doIt:hover{
   background-color: white;
   color: #27274d;
 }
+
 .buttons .delete{
   cursor: pointer;
   color: red;
   transition: ease-in-out 0.3s;
 }
+
 .buttons .delete:hover{
   background-color: red;
   color: white;
 }
+
 ul li{
   border: 2px solid grey;
   padding: 1rem;
@@ -155,37 +170,112 @@ ul li{
   height: auto;
   background-color: #302f57;
 }
-form input{
+
+.form input{
+  max-width: 100%;
   width: 100%;
   color: white;
   background-color: #47466e;
   border: none;
+  border-radius: 15px;
   margin-bottom: .5rem;
   margin-top: .5rem;
   outline: none;
+  color: white;
+  transition: ease-in-out 0.5s;
   padding: 1rem;
+}
+.form-div{
+  max-width: 100%;
+  width: 30%;
+  padding: 3rem 5rem 3rem 3rem;
+  border-radius: 15px;
+  margin: 1.5rem 0 1.5rem 1.5rem;
+  background-color: #302f57;
+}
+
+.form-div input{
+  max-width: 100%;
+  width: 100%;
+  color: white;
+  background-color: #47466e;
+  border: none;
+  border-radius: 15px;
+  margin-bottom: .5rem;
+  margin-top: .5rem;
+  outline: none;
+  color: white;
+  transition: ease-in-out 0.5s;
+  padding: 1rem;
+}
+
+.form-div input:focus{
+  border: 1px solid white;
+}
+
+.error{
+  padding: 0.8rem;
+  background-color: #ffffff90;
+  border-radius: 15px;
+  border-left: 3px solid red;
+  border-top: 1px solid red;
+  border-bottom: 1px solid red;
+  border-right: 1px solid red;
+  color: red;
+  margin-top: 1rem;
 }
 label{
   color: white;
   margin-bottom: .5rem;
 }
+
 ::-webkit-scrollbar-corner{
   border-radius: 15px;
 }
+
 ::-webkit-scrollbar-track{
   background-color: #302f57;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
 
 }
+
+.hidden{
+  display: none;
+}
+.username,.logout{
+  padding: 0.5rem;
+  background-color: #47466e;
+  border-radius: 15px;
+}
+.logout{
+  margin-left: 0.5rem;
+}
+
+.account{
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  color: aliceblue;
+}
+.account h1{
+  padding: 1.5rem;
+  font-size: 4rem;
+}
+#hidden{
+  display: none;
+}
+.account h2{
+  padding:  0 1.5rem 1rem 1.5rem;
+  font-size: 1rem;
+}
+
 @media screen and (max-width: 768px) {
   .home{
     flex-direction: column-reverse;
     width: 100%;
     padding-left: 1rem;
     margin-bottom: 4rem;
-  }
-  .main{
   }
   .form{
     width:fit-content;
@@ -212,5 +302,29 @@ label{
   .buttons{
     margin-top: 1rem;
     margin-left: 1.5rem;
+  }
+  .account{
+    flex-direction: column;
+    justify-content: center;
+  }
+  .account h1{
+    display: none;
+  }
+  .logo h1{
+    font-size: 1.5rem;
+  }
+  #hidden{
+    display: block;
+    font-size: 2rem;
+    padding: .5rem;
+  }
+  .account h2{
+    margin: 0;
+    padding: .5rem;
+    font-size: 0.8rem;
+  }
+  .form-div{
+    margin-left: 0;
+    width: 80%;
   }
 }

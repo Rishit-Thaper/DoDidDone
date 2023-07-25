@@ -20,12 +20,10 @@ export default function () {
         </div>
         
         <nav>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
             {user && (
               <>
-                <Link to="/profile">{user.email}</Link>        
-                <Link onClick={handleClick}>Logout</Link>
+                <Link className='username'>{user.email}</Link>        
+                <Link className='logout' onClick={handleClick}>Logout</Link>
               </>
             )}
             {!user && (
@@ -34,7 +32,12 @@ export default function () {
                 <Link to="/signup">Signup</Link>  
               </>
             )}
-
+            {user && (
+              <span className='hidden'>
+                <Link className='username'>{user.email}</Link>        
+                <Link onClick={handleClick}>Logout</Link>
+              </span>
+            )}
         </nav>        
     
     </div>

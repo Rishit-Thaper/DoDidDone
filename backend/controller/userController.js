@@ -46,5 +46,5 @@ const signController = async(req, res) =>{
 
 module.exports = {
     loginController,
-    signController
+    signController,
 }
